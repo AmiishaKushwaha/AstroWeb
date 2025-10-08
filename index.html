@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Astrology Portal</title>
+  <link rel="stylesheet" href="./style.css">
+ 
+</head>
+<body>
+  <div class="stars" id="starsContainer"></div>
+  
+  <div class="notification" id="notification">Copied to clipboard!</div>
+
+  <main class="container" role="main">
+    <section class="panel" aria-labelledby="app-title">
+      <header class="title">
+        <div class="logo">SY</div>
+        <div>
+          <h1 id="app-title">Instant Birth Chart Astro</h1>
+          <p class="lead">Enter basic details and get your Western zodiac sun-sign, element, lucky color and short personality sketch.</p>
+        </div>
+      </header>
+
+      <form id="astroForm" autocomplete="on" novalidate>
+        <div class="row">
+          <div style="flex:1">
+            <label for="fname">First name</label>
+            <input id="fname" name="fname" type="text" placeholder="Aisha" required />
+          </div>
+          <div style="width:140px">
+            <label for="sname">Surname</label>
+            <input id="sname" name="sname" type="text" placeholder="Sharma" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small">
+            <label for="day">Day</label>
+            <input id="day" name="day" type="number" min="1" max="31" placeholder="12" required />
+          </div>
+
+          <div class="small">
+            <label for="month">Month</label>
+            <select id="month" name="month" required>
+              <option value="">Month</option>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
+
+          <div class="small">
+            <label for="year">Year</label>
+            <input id="year" name="year" type="number" min="1900" max="2100" placeholder="1998" required />
+          </div>
+
+          <div style="flex:1;display:flex;align-items:end">
+            <div style="width:100%">
+              <label style="visibility:hidden">_</label>
+              
+              <div class="actions">
+                <button class="btn" id="submitBtn" type="submit">
+                  <span id="btnText">Reveal My Sign</span>
+                  <div class="loading" id="loadingIndicator">
+                    <div class="loading-spinner"></div>
+                  </div>
+                </button>
+                <button class="btn secondary" id="clearBtn" type="button">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="hint" style="color:var(--muted);font-size:13px;margin-top:6px">We only compute the Sun sign (Western zodiac) from the provided birth date. For a full natal chart you'd need time & place of birth.</p>
+      </form>
+
+      <div class="horoscope-section" id="horoscopeSection" style="display: none;">
+        <div class="horoscope-title">Today's Horoscope</div>
+        <div class="horoscope-text" id="horoscopeText"></div>
+      </div>
+
+      <div class="compatibility-section" id="compatibilitySection" style="display: none;">
+        <div class="compatibility-title">Best Matches</div>
+        <div class="compatibility-list" id="compatibilityList"></div>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:12px;align-items:center">
+        <div class="muted-pill">No tracking • Client-side only</div>
+        <div class="muted-pill">Responsive • Accessible</div>
+      </div>
+
+      <footer class="hint">Want extras? I can add a complete natal chart (time & place), horoscope feed, or an admin panel to store submissions — tell me which.</footer>
+    </section>
+
+    <aside class="result-card" aria-live="polite">
+      <div id="emptyState">
+        <div class="zodiac-badge">✨</div>
+        <div class="zodiac-name">Your sign will appear here</div>
+        <div class="meta">Try entering your birth date and click <strong>Reveal My Sign</strong>.</div>
+      </div>
+
+      <div id="resultState" style="display:none;width:100%">
+        <div style="display:flex;gap:12px;align-items:center;justify-content:center;flex-direction:column">
+          <div id="badge" class="zodiac-badge" aria-hidden="true">♈</div>
+          <div style="display:flex;gap:10px;align-items:end;flex-direction:column">
+            <div class="zodiac-name" id="zname">Aries</div>
+            <div class="meta" id="zmeta">Fire • Ruling planet: Mars</div>
+          </div>
+        </div>
+
+        <div class="traits" id="traits">
+          <!-- dynamic chips -->
+        </div>
+
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
+          <button class="btn" id="copyBtn">Copy summary</button>
+          <button class="btn secondary" id="printBtn">Print</button>
+        </div>
+
+        <div class="footer-links">
+          <div class="muted-pill" id="lucky">Lucky color • Gold</div>
+          <div class="muted-pill" id="lucky2">Lucky number • 5</div>
+        </div>
+      </div>
+    </aside>
+  </main>
+  <script src="./first.js"></script>
+
+</body>
+</html>
